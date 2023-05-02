@@ -182,6 +182,9 @@ public class Main extends JavaPlugin implements Listener {
     // TNT ignites by Player (listener)
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onIgniteTNT(EntitySpawnEvent e) {
+        (new BukkitRunnable() {
+            @Override
+            public void run() {
         Entity tnt = e.getEntity();
         if (!(e.getEntity() instanceof TNTPrimed tntPrimed)) {
             return;
@@ -207,6 +210,8 @@ public class Main extends JavaPlugin implements Listener {
                 }
             }
         }
+            }
+        }).runTaskLater(this, 1);
     }
 
     // HangingBreak (logger)
